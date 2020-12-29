@@ -62,6 +62,7 @@ class MarkdownDisplay:
     def update_html(self):
         html = self.get_html(self.path)
         self.window.load_html(html)
+        self.set_css()
 
 
 if __name__ == "__main__":
