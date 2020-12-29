@@ -50,7 +50,8 @@ class MarkdownDisplay:
     def display(self, path):
         self.path = path
         html = self.get_html(path)
-        self.window = webview.create_window(os.path.basename(path), html=html)
+        print(html)
+        self.window = webview.create_window(os.path.basename(path), html=html, text_select=True)
         # watch the file for changes
         event_handler = ChangeHandler(self)
         observer = Observer()
