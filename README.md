@@ -10,6 +10,7 @@ A simple markdown viewer
  - code blocks between three backticks ✔️
  - nested lists ✔️
  - updates on file change ✔️
+ - light and dark theme ✔️
 
 ## Usage
 
