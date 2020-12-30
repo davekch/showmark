@@ -21,5 +21,5 @@ python showmark.py path/to/file.md
 
 requires python3.6 or newer
 ```
-pip install pywebview[qt] markdown fire watchdog mdx_linkify mdx_truly_sane_lists
+pip install pywebview[qt] markdown fire watchdog mdx_linkify mdx_truly_sane_lists yaml
 ```

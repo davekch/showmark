@@ -5,6 +5,20 @@ from mdx_linkify.mdx_linkify import LinkifyExtension
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import os
+import yaml
+
+DIR = os.path.dirname(os.path.realpath(__file__))
+CONFIG_PATH = os.path.join(DIR, "showmark.yml")
+try:
+    with open(CONFIG_PATH) as f:
+        SETTINGS = yaml.safe_load(f)
+except FileNotFoundError:
+    SETTINGS = dict(
+        style="style.css",
+        markdown_extensions=["fenced_code", "mdx_truly_sane_lists"]
+    )
+    with open(CONFIG_PATH, "w") as f:
+        yaml.dump(SETTINGS, f)
 
 
 def open_in_default_browser(attrs, new=False):
@@ -23,12 +37,14 @@ class ChangeHandler(FileSystemEventHandler):
 
 class MarkdownDisplay:
     def __init__(self):
-        self.extensions = [
-            "fenced_code",
-            LinkifyExtension(linker_options={"callbacks": [open_in_default_browser]}),
-            "mdx_truly_sane_lists"
-        ]
-        self.csspath = "style.css"
+        self.extensions = [LinkifyExtension(
+            linker_options={"callbacks": [open_in_default_browser]}
+        )]
+        self.extensions += SETTINGS["markdown_extensions"]
+        if os.path.isabs(SETTINGS["style"]):
+            self.csspath = SETTINGS["style"]
+        else:
+            self.csspath = os.path.join(DIR, SETTINGS["style"])
         self.window = None
         self.path = None
 

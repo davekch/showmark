@@ -1,0 +1,7 @@
+# settings for showmark
+
+style: style.css
+
+markdown_extensions:
+    - fenced_code
+    - mdx_truly_sane_lists
