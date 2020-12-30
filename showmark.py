@@ -15,7 +15,10 @@ try:
 except FileNotFoundError:
     SETTINGS = dict(
         style="style.css",
-        markdown_extensions=["fenced_code", "mdx_truly_sane_lists"]
+        markdown_extensions=["fenced_code", "mdx_truly_sane_lists"],
+        window=dict(
+            text_select=True,
+        ),
     )
     with open(CONFIG_PATH, "w") as f:
         yaml.dump(SETTINGS, f)
@@ -65,13 +68,18 @@ class MarkdownDisplay:
     def display(self, path):
         self.path = path
         html = self.get_html(path)
-        self.window = webview.create_window(os.path.basename(path), html=html, text_select=True)
+        print(html)
+        self.window = webview.create_window(
+            os.path.basename(path),
+            html=html,
+            **SETTINGS["window"]
+        )
         # watch the file for changes
         event_handler = ChangeHandler(self)
         observer = Observer()
         observer.schedule(event_handler, path=path)
         observer.start()
-        webview.start(self.set_css)
+        webview.start(self.set_css, debug=SETTINGS.get("debug", False))
 
     def update_html(self):
         html = self.get_html(self.path)

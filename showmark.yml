@@ -5,3 +5,8 @@ style: style.css
 markdown_extensions:
     - fenced_code
     - mdx_truly_sane_lists
+
+window:
+    text_select: on
+
+debug: on
