@@ -60,13 +60,11 @@ class MarkdownDisplay:
         except FileNotFoundError:
             html = f"<p>The file {path} does not exist.</p>"
 
-        html = f"<div class='doc'>\n{html}\n</div>"
         return html
 
     def display(self, path):
         self.path = path
         html = self.get_html(path)
-        print(html)
         self.window = webview.create_window(os.path.basename(path), html=html, text_select=True)
         # watch the file for changes
         event_handler = ChangeHandler(self)
