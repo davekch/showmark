@@ -52,4 +52,5 @@ pre {
   border-color: #B8B8B8;
   border-width: 1px;
   padding: 7px;
+  overflow-x: auto;
 }
