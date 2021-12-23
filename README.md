@@ -6,6 +6,7 @@ A simple markdown viewer
 
 ## Features
  - basic markdown like titles, bold, italic, monospace ✔️
+ - syntax highlighting ✔️
  - clickable links ✔️
  - code blocks between three backticks ✔️
  - nested lists ✔️

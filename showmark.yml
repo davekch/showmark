@@ -1,10 +1,12 @@
 # settings for showmark
 
 style: style.css
+pygmentize_style: tango
 
 markdown_extensions:
     - fenced_code
     - mdx_truly_sane_lists
+    - codehilite
 
 window:
     text_select: on

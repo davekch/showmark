@@ -2,6 +2,7 @@ import webview
 import fire
 import markdown
 from mdx_linkify.mdx_linkify import LinkifyExtension
+from pygments.formatters import HtmlFormatter
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import os
@@ -15,7 +16,7 @@ try:
 except FileNotFoundError:
     SETTINGS = dict(
         style="style.css",
-        markdown_extensions=["fenced_code", "mdx_truly_sane_lists"],
+        markdown_extensions=["fenced_code", "mdx_truly_sane_lists", "codehilite"],
         window=dict(
             text_select=True,
         ),
@@ -52,9 +53,10 @@ class MarkdownDisplay:
         self.path = None
 
     def set_css(self):
+        css = HtmlFormatter(style=SETTINGS["pygmentize_style"]).get_style_defs()
         with open(self.csspath) as f:
-            css = f.read()
-            self.window.load_css(css)
+            css += f.read()
+        self.window.load_css(css)
 
     def get_html(self, path):
         try:
