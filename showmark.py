@@ -1,5 +1,5 @@
 import webview
-import fire
+import argparse
 import markdown
 from mdx_linkify.mdx_linkify import LinkifyExtension
 from pygments.formatters import HtmlFormatter
@@ -52,10 +52,14 @@ class MarkdownDisplay:
         self.window = None
         self.path = None
 
-    def set_css(self):
+    def get_css(self):
         css = HtmlFormatter(style=SETTINGS["pygmentize_style"]).get_style_defs()
         with open(self.csspath) as f:
             css += f.read()
+        return css
+
+    def set_css(self):
+        css = self.get_css()
         self.window.load_css(css)
 
     def get_html(self, path):
@@ -66,6 +70,27 @@ class MarkdownDisplay:
             html = f"<p>The file {path} does not exist.</p>"
 
         return html
+
+    def export(self, inpath, outpath):
+        html = f"""
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+</head>
+
+<style>
+{self.get_css()}
+</style>
+
+<body>
+{self.get_html(inpath)}
+</body>
+</html>
+"""
+        with open(outpath, "w") as f:
+            f.write(html)
 
     def display(self, path):
         self.path = path
@@ -90,5 +115,13 @@ class MarkdownDisplay:
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("input", help="Markdown file")
+    parser.add_argument("--export", metavar="output", help="export to html")
+    args = parser.parse_args()
+
     display = MarkdownDisplay()
-    fire.Fire(display.display)
+    if args.export:
+        display.export(args.input, args.export)
+    else:
+        display.display(args.input)

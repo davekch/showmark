@@ -16,12 +16,23 @@ A simple markdown viewer
 ## Usage
 
 ```
-python showmark.py path/to/file.md
+$ python showmark.py --help
+usage: showmark.py [-h] [--export output] input
+
+positional arguments:
+  input            Markdown file
+
+optional arguments:
+  -h, --help       show this help message and exit
+  --export output  export to html
+
+$ python showmark.py path/to/file.md
+$ python showmark.py path/to/file.md --export output.html
 ```
 
 ## Installation
 
 requires python3.6 or newer
 ```
-pip install pywebview[qt] markdown fire watchdog mdx_linkify mdx_truly_sane_lists yaml
+pip install pywebview[qt] markdown watchdog mdx_linkify mdx_truly_sane_lists yaml
 ```
