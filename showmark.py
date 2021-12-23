@@ -95,7 +95,6 @@ class MarkdownDisplay:
     def display(self, path):
         self.path = path
         html = self.get_html(path)
-        print(html)
         self.window = webview.create_window(
             os.path.basename(path),
             html=html,
