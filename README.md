@@ -1,5 +1,5 @@
 # showmark
-A simple markdown viewer
+A simple markdown viewer and html converter
 
 ![example](examples/example.png)
 
@@ -12,6 +12,8 @@ A simple markdown viewer
  - nested lists ✔️
  - updates on file change ✔️
  - light and dark theme ✔️
+ - export to html ✔️
+ - easily stylable ✔️
 
 ## Usage
 
