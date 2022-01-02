@@ -41,9 +41,9 @@ class ChangeHandler(FileSystemEventHandler):
 
 class MarkdownDisplay:
     def __init__(self):
-        self.extensions = [LinkifyExtension(
-            linker_options={"callbacks": [open_in_default_browser]}
-        )]
+        self.extensions = [
+            "mdx_linkify"
+        ]
         self.extensions += SETTINGS["markdown_extensions"]
         if os.path.isabs(SETTINGS["style"]):
             self.csspath = SETTINGS["style"]
