@@ -4,6 +4,7 @@ style: style.css
 pygmentize_style: tango
 
 markdown_extensions:
+    - tables
     - fenced_code
     - mdx_truly_sane_lists
     - codehilite

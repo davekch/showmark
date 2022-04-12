@@ -67,3 +67,31 @@ pre {
   padding: 7px;
   overflow-x: auto;
 }
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow: auto;
+}
+
+table th {
+  font-weight: 600;
+}
+
+table th,
+table td {
+  padding: 6px 13px;
+  border: 1px solid #30363d;
+}
+
+table tr {
+  background-color: #0d1117;
+  border-top: 1px solid #21262d;
+}
+
+table tr:nth-child(2n) {
+  background-color: #161b22;
+}
