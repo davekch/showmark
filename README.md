@@ -36,5 +36,5 @@ $ python showmark.py path/to/file.md --export output.html
 
 requires python3.6 or newer
 ```
-pip install pywebview[qt] markdown watchdog mdx_linkify mdx_truly_sane_lists yaml
+pip install pywebview[qt] markdown watchdog mdx_linkify mdx_truly_sane_lists pyyaml pycairo PyGObject
 ```
